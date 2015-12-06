@@ -12,11 +12,11 @@ def is_balanced(num):
 		
 	for i in range(len(list_digits) / 2):
 		left += list_digits[i]
-		print ('left = %s' %left)
+		#print 'left = %s' %left
 		
 	for i in range(len(list_digits)-1, (len(list_digits)/2 - 1) + len(list_digits)%2,-1): 
 		right += list_digits[i]
-		print ('right = %s' %right)
+		#print 'right = %s' %right
 		
 	if left == right:
 		return True
@@ -65,18 +65,27 @@ def is_palindrome(n):
 	
 #problem 4
 def prime_numbers(n):
-	num_list = []
-	prime_list = []
+	# num_list = []
+	# prime_list = []
 
-	for i in range(2, n+1):
-		num_list.append(i)
-
-
+	# for i in range(2, n+1):
+	# 	num_list.append(i)
 
 
 
-	print(num_list)
+
+
+	# print(num_list)
 	
+	all_numbers = [x for x in range(2, n + 1)]
+
+    for i in range(2, n + 1):
+
+        not_prime = [x for x in range(i*2, n + 1, i)]
+
+        all_numbers = set(all_numbers) - set(not_prime)
+
+    return sorted(list(all_numbers))
 	
 	
 	
@@ -101,11 +110,28 @@ def is_anagram(a, b):
 
 	return a_map == b_map		
 
+
 #problem 6		
+def birthday_ranges(birthdays, ranges):
+	
+	result = [0] * len(ranges) #list initialized with zeros
+
+	for i in range(len(ranges)):
+		for j in range(len(birthdays)):
+			if birthdays[j] >= ranges[i][0] and birthdays[j] <= ranges[i][1]:
+				result[i] += 1
+
+	return result
+
 
 #problem 7
+def sum_matrix(m):
+	m_sum = 0
 
-	
-	
-print(is_anagram('LettEr', 'TEETRL'))
+	for i in m:
+		for j in i:
+			m_sum += j
 
+	return m_sum
+
+#problem 8
