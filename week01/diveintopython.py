@@ -135,3 +135,5 @@ def sum_matrix(m):
 	return m_sum
 
 #problem 8
+
+print(prime_numbers(100))
