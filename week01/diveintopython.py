@@ -1,3 +1,5 @@
+import copy
+
 #problem 1
 def is_balanced(num):
 	list_digits = []
@@ -65,29 +67,20 @@ def is_palindrome(n):
 	
 #problem 4
 def prime_numbers(n):
-	# num_list = []
-	# prime_list = []
 
-	# for i in range(2, n+1):
-	# 	num_list.append(i)
+	numbers = [0 for x in range(n)] #list of zeros 
 
+	i = 2
 
+	while i < n:
+		if numbers[i] == 0:
+			print(i)
+			j = i*i
+			while j < n:
+				numbers[j] = 1 #change all the numbers on positions divisible by the current number to 1 
+				j += i
 
-
-
-	# print(num_list)
-	
-	all_numbers = [x for x in range(2, n + 1)]
-
-    for i in range(2, n + 1):
-
-        not_prime = [x for x in range(i*2, n + 1, i)]
-
-        all_numbers = set(all_numbers) - set(not_prime)
-
-    return sorted(list(all_numbers))
-	
-	
+		i += 1	
 	
 #problem 5
 def is_anagram(a, b):
@@ -136,4 +129,66 @@ def sum_matrix(m):
 
 #problem 8
 
-print(prime_numbers(100))
+NEIGHBORS = [
+(-1, -1), (0, -1), (1, -1),  # Get to 1, 2 and 3
+(-1, 0), (1, 0),  # Get to 8 and 7
+(-1, 1), (0, 1), (1, 1)]  # Get to 9, 5 and 6
+
+
+def within_bounds(m, at):
+    if at[0] < 0 or at[0] >= len(m):
+        return False
+
+    if at[1] < 0 or at[1] >= len(m[0]):
+        return False
+
+    return True
+
+
+def bomb(m, at):
+    if not within_bounds(m, at):
+        return m
+
+    target_value = m[at[0]][at[1]]
+    dx, dy = 0, 1
+
+    for position in NEIGHBORS:
+        position = (at[dx] + position[dx], at[dy] + position[dy])
+
+        if within_bounds(m, position):
+            position_value = m[position[dx]][position[dy]]
+            # This min() is not to go less than zero
+            m[position[dx]][position[dy]] -= min(target_value, position_value)
+
+    return m
+
+
+def matrix_bombing_plan(m):
+    result = {}
+
+    for i in range(0, len(m)):
+        for j in range(0, len(m[0])):
+            bombed = bomb(copy.deepcopy(m), (i, j))
+            result[(i, j)] = sum_matrix(bombed)
+
+    return result
+
+
+#problem 9
+def is_transversal(transversal, family):
+
+	family_flags = [0 for x in range(len(family))]
+
+	for element in transversal:
+		for i in range(len(family)):
+			for el in family[i]:
+				if element == el:
+					family_flags[i] = 1
+					break
+
+	for flag in family_flags:
+		if flag == 0:
+			return False
+
+
+	return True
