@@ -8,15 +8,13 @@ def is_number_balanced(num):
 	
 	for i in range(len(str(num))):
 		list_digits.append(num % 10)
-		num /= 10
+		num //= 10
 		
-	print (list_digits)
-		
-	for i in range(len(list_digits) / 2):
+	for i in range(len(list_digits) // 2):
 		left += list_digits[i]
 		#print 'left = %s' %left
 		
-	for i in range(len(list_digits)-1, (len(list_digits)/2 - 1) + len(list_digits)%2,-1): 
+	for i in range(len(list_digits)-1, (len(list_digits)//2 - 1) + len(list_digits)%2,-1): 
 		right += list_digits[i]
 		#print 'right = %s' %right
 		
@@ -192,3 +190,7 @@ def is_transversal(transversal, family):
 
 
 	return True
+
+
+
+print(is_number_balanced(99))
