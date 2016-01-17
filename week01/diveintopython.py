@@ -1,7 +1,7 @@
 import copy
 
 #problem 1
-def is_balanced(num):
+def is_number_balanced(num):
 	list_digits = []
 	left = 0
 	right = 0
@@ -59,7 +59,7 @@ def is_palindrome(n):
 	num_string = str(n)
 	p = True
 	
-	for i in range(len(num_string)/2):
+	for i in range(len(num_string)//2):
 		if num_string[i] != num_string[len(num_string)-(i + 1)]:
 			p = False
 	
