@@ -66,19 +66,21 @@ def is_palindrome(n):
 #problem 4
 def prime_numbers(n):
 
-	numbers = [0 for x in range(n)] #list of zeros 
-
+	numbers = [0 for x in range(n+1)] #list of zeros 
+	result = []
 	i = 2
 
-	while i < n:
+	while i <= n:
 		if numbers[i] == 0:
-			print(i)
+			result.append(i)
 			j = i*i
-			while j < n:
+			while j <= n:
 				numbers[j] = 1 #change all the numbers on positions divisible by the current number to 1 
 				j += i
 
 		i += 1	
+
+	return result	
 	
 #problem 5
 def is_anagram(a, b):
@@ -193,4 +195,4 @@ def is_transversal(transversal, family):
 
 
 
-print(is_number_balanced(99))
+print(prime_numbers(30))
