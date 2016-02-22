@@ -67,11 +67,11 @@ def fib_number(n):
 
 	a, b = 1, 1
 
-	for i in range(n+1):
+	for i in range(n):
 		fib_string += str(a)
 		a, b = b, (a + b)
 
-	return fib_string
+	return int(fib_string)
 
 #problem 7
 def palindrome(obj):
@@ -82,7 +82,7 @@ def palindrome(obj):
 #problem 8
 def count_vowels(s):
 	count = 0
-	vowels = "aeiouy"
+	vowels = "AEIOUYaeiouy"
 
 	for i in range(len(s)):
 		if s[i] in vowels:
