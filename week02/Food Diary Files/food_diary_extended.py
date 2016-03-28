@@ -15,10 +15,10 @@ def write_json(date, meal):
 
 	if date in temp: #check if the current date is in the dict
 		temp[date].append(meal)
-	else: 
+	else:
 		lst = [] #create a list and add the meal to it
 		lst.append(meal)
-		temp[date] = lst #temp[date].append(meal) throws an exception! 
+		temp[date] = lst #temp[date].append(meal) throws an exception!
 
 	with open('food.json', 'w') as wfile:
 		json.dump(temp, wfile)
@@ -38,11 +38,11 @@ def list_meals(date):
 
 
 def main():
-	
+
 	command = ''
 
 	calories_dict = {}
-	calories_dict = read_json('calories.json')
+	calories_dict = read_json('calories.json') #file with calories for different meals
 
 	while command != 'exit':
 		text = input("Enter	a command > ").split() #creates a list of strings
@@ -55,6 +55,10 @@ def main():
 
 			amount = 0
 
+			if meal not in calories_dict:
+				cals = int(input("How many calories in 100g?"))
+				calories_dict[meal] = cals
+
 			text = input("How much have you eaten? > ")
 			if text.endswith('kg'):
 				amount = int(text[:-2])*1000
@@ -64,22 +68,22 @@ def main():
 			meal_cals = 0
 			meal_cals = calories_dict[meal]
 			meal_cals = meal_cals * amount/100
-			
+
 			print(amount)
 			print(meal_cals)
 
 
 		elif command == 'list':
-			print(list_meals(meal))
-
-		
-			
-
-				
+			print(list_meals(text[1]))
 
 
 
-				
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
